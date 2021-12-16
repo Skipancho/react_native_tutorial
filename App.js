@@ -5,6 +5,7 @@ import {
   TextInput, 
   View,
   Text,
+  ScrollView,
   } from 'react-native';
 
 const App = () => {
@@ -13,6 +14,11 @@ const App = () => {
       <Text style={styles.appTitle}>Hello World</Text>
       <View style={styles.card}>
         <TextInput style={styles.input} placeholder="Add an item!"/>
+        <ScrollView>
+          <Text>TodoList</Text>
+          <Text>ListItem 1</Text>
+          <Text>ListItem 2</Text>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
