@@ -6,12 +6,15 @@ import Icon from 'react-native-vector-icons/AntDesign';
 const TodoListItem = () => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
-        <View style={styles.completeCircle}>
-            <Icon name="circledowno" size={30} color="#3143e8"/>
-        </View>
-      </TouchableOpacity>
-      <Text style={[styles.text, styles.strikeText]}>TodoList items will be shown here</Text>
+        <TouchableOpacity>
+            <View style={styles.completeCircle}>
+                <Icon name="circledowno" size={30} color="#3143e8"/>
+            </View>
+        </TouchableOpacity>
+        <Text style={[styles.text, styles.strikeText]}>TodoList items will be shown here</Text>
+        <TouchableOpacity style={styles.buttonContainer}>
+            <Icon name="delete" size={30} color ="#e33057"/>
+        </TouchableOpacity>
     </View>
   );
 };
