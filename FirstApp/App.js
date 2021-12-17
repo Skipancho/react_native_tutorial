@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView, 
   StyleSheet,
@@ -8,16 +8,25 @@ import {
   ScrollView,
   } from 'react-native';
 
-  import TodoInsert from './components/TodoInsert'
-  import TodoList from './components/TodoList'
+import TodoInsert from './components/TodoInsert'
+import TodoList from './components/TodoList'
 
 const App = () => {
+  const [todos,setTodos] = useState([]);
+
+  const addTodo = text => {
+    setTodos([
+        ...todos,
+        {id: Math.random().toString, textValue: text, checked: false},
+    ]);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.appTitle}>Hello World</Text>
       <View style={styles.card}>
-        <TodoInsert/>
-        <TodoList/>
+        <TodoInsert onAddTodo={addTodo}/>
+        <TodoList todos={todos}/>
       </View>
     </SafeAreaView>
   );
