@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState}from 'react';
 import {
   SafeAreaView, 
   StyleSheet,
@@ -6,10 +6,25 @@ import {
   View,
   Text,
   ScrollView,
+  FlatList,
   Button,
   } from 'react-native';
 
   const App = () => {
+    const[data , setData] = useState([]);
+
+    const getMoviesFromApiAsync = async () => {
+      try {
+        const response = await fetch(
+          'https://reactnative.dev/movies.json'
+        );
+        const json = await response.json();
+        setData(json.movies);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     return (
     <SafeAreaView style={styles.container}>
       <TextInput 
@@ -17,10 +32,19 @@ import {
         placeholder="nick name" 
       />
       <View style = {styles.button}>
-        <Button title={'sign in'}/>
+        <Button title={'sign in'} onPress={getMoviesFromApiAsync}/>
       </View>
+      
+      <FlatList
+          data={data}
+          keyExtractor={({ id }, index) => id}
+          renderItem={({ item }) => (
+            <Text>{item.title}, {item.releaseYear}</Text>
+          )}
+        />
+
     </SafeAreaView>
-  );
+    );
   };
 
   const styles = StyleSheet.create({
